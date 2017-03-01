@@ -1,0 +1,41 @@
+<html>
+	<head>
+	</head>
+	<body>
+		<script src="printf.js"></script>
+		<script>
+            //Initialize class that uses base class
+			var bb = new Module.BBS;
+			bb.umm();
+			bb.someFunction();
+			bb.causeWhyNot();
+			bb.yo();
+
+            //Setup a callback
+			var DerivedCallback = Module.BaseCallback.extend("BaseCallback", {
+				__construct: function() {
+					this.__parent.__construct.call(this);
+				},
+				__destruct: function() {
+					this.__parent.__destruct.call(this);
+				},
+				giveCallbackData: function(b) {
+					console.log("Yay");
+					console.log("Got data: { ", b.x, ", ", b.y, ", ", b.z, " }");
+				}
+			});
+            //Initialize callback
+			cbObj = new DerivedCallback;
+
+			Module.someFunc(function() {
+				console.log("someFunc");
+			});
+
+			console.log("2");
+
+            //Excersize the callback.
+			Module.giveData(cbObj);
+
+		</script>
+	</body>
+</html>
